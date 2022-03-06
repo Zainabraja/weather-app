@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Weather App</title>
+</head>
+
+<body>
+    <div class="container">
+        <% if (weather==null){ %>
+            <div class="weather-main">
+                <h1> Weather App</h1>
+                <h3>Find out temperature, conditions, and more...</h3>
+            </div>
+            <% } else { %>
+                <div class=" display" id=<%=img %> >
+                    <h1> Weather App</h1>
+                    <div class="city">
+                        <span class="city-name">
+                            <%= city %>,
+                        </span>
+                        <span class="country">
+                            <%= country %>
+                        </span>
+                    </div>
+                    <div class="bottom">
+                        <div class="date-time">
+                            <div class="date">
+                                <%= date %>
+                            </div>
+                            <div class="time">
+                                <%= time %>
+                            </div>
+                        </div>
+                        <div class="temp">
+                            <%= temp %>&#176<span class="c">C</span>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                    <div class="weather-other">
+                        <div class="wrapper">
+                            <form action="/" method="post" autocomplete="off">
+                                <div class="form-cont">
+                                    <div>
+                                        <input name="loc" type="text" class="inputText" autocomplete="off" required>
+                                        <span class="floating-label">Enter a city</span>
+                                    </div>
+                                    <button type="submit">Search</button>
+                                </div>
+                            </form>
+                            <% if (weather==null && (message==200)) { %>
+                                <div></div>
+                                <% } else if (message==404) { %>
+                                    <div class="error">Please enter a valid city!</div>
+                                    <% } else { %>
+                                        <div class="type">
+                                            <div class="weather">
+                                                <img src="http://openweathermap.org/img/wn/<%= icon %>@2x.png" alt="">
+                                                <div>
+                                                    <%= weather %>
+                                                </div>
+                                            </div>
+                                            <div class="info">
+                                                <div class="desc">
+                                                    <span class="info-key">Weather Description</span>
+                                                    <span class="info-value">
+                                                        <%= desc %>
+                                                    </span>
+                                                </div>
+                                                <div class="humid">
+                                                    <span class="info-key">Humidity</span>
+                                                    <span class="info-value">
+                                                        <%= humidity %>%
+                                                    </span>
+                                                </div>
+                                                <div class="wind">
+                                                    <span class="info-key">Wind Speed</span>
+                                                    <span class="info-value">
+                                                        <%= wind %> km/h
+                                                    </span>
+                                                </div>
+                                                <div class="visibility">
+                                                    <span class="info-key">Visibility</span>
+                                                    <span class="info-value">
+                                                        <%= vis %> km
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                        </div>
+                    </div>
+                    <% } %>
+    </div>
+</body>
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+
+    var ele = document.getElementsByClassName("display")
+    var image = ele[0].id
+    var urlstr = 'url("images/' + image + '.jpg")'
+    ele[0].style.backgroundImage = urlstr
+
+</script>
+
+</html>
+
+
+<!-- weather.main.icon -->
+<!-- main.temp.temp_min.temp_max(c).humidity(%) -->
+<!-- wind.speed(m/s)->(km/h) -->
+<!-- sys.country -->
+<!-- name -->
+<!-- visibility(m)->(km) -->

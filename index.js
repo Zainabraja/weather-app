@@ -36,12 +36,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res, next) => {
     const location = req.body.loc
-    // var d = new Date((new Date().getTime()) + 19800 * 1000)
-    // var date = d.toISOString().slice(11, 16)
-    // var date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();;
-    // console.log(date)
-
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${api}`
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=a240c700ca53e2a1b087cea8ccc78f02`
     axios.get(url)
         .then((response) => {
             const data = response.data
